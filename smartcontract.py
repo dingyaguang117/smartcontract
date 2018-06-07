@@ -20,9 +20,12 @@ def index(currency="BTC"):
     }
     result = check_all_markets(currency)
     data['markets'] = result
-    data['done'] = 'yes' if any(result.values()) else 'no'
+    data['done'] = 'no'
+    for v in result.values():
+        if v == True:
+            data['done'] = "yes"
+            break
     data['timestamp'] = time.time()
-
     return json.dumps(data)
 
 
