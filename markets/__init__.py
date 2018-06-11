@@ -3,18 +3,26 @@ __author__ = 'ding'
 
 import yobit
 
-MARKETS = [
-    ('yobit', yobit),
-]
+MARKETS = {
+    'yobit': yobit,
+}
 
 
+def check_market(market, currency):
+    ret = {}
+    if market not in MARKETS:
+        ret[market] = 'market not support'
+        return ret
+
+    package = MARKETS[market]
+    ret[market] = package.check_currency(currency)
+    return ret
 
 
 def check_all_markets(currency):
     ret = {}
-    for market in MARKETS:
-        name, package = market
-        ret[name] = package.check_currency(currency)
+    for name in MARKETS:
+        ret[name] = MARKETS[name].check_currency(currency)
     return ret
 
 
