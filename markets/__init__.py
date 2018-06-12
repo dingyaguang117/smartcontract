@@ -2,9 +2,11 @@
 __author__ = 'ding'
 
 import yobit
+import bittrex
 
 MARKETS = {
     'yobit': yobit,
+    'bittrex': bittrex
 }
 
 
@@ -28,4 +30,4 @@ def check_all_markets(currency):
 
 
 if __name__ == '__main__':
-    print check_all_markets('BTC')
+    print check_all_markets('LTC')
